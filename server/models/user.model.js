@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 import OrderModel from "./order.model.js";
 
-// Define points history schema
 const pointsHistorySchema = new mongoose.Schema({
     orderId: {
-        type: String,
+        type: mongoose.Schema.ObjectId,
+        ref: "order",
         required: true
     },
     points: {
@@ -20,9 +20,22 @@ const pointsHistorySchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    balance: {
+        type: Number,
+        required: true
+    },
+    expiresAt: {
+        type: Date,
+        index: { expires: 0 } // Auto-remove expired points
+    },
+    metadata: {
+        type: mongoose.Schema.Types.Mixed,
+        default: {}
+    },
     createdAt: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        index: true
     }
 });
 
@@ -48,6 +61,51 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: null,
     },
+    // 🔗 Các đơn hàng của người dùng
+    orders: [{
+        type: mongoose.Schema.ObjectId,
+        ref: "order"
+    }],
+    
+    // 🏷️ Các đơn đặt bàn
+    reservations: [{
+        type: mongoose.Schema.ObjectId,
+        ref: "reservation"
+    }],
+    
+    // 🏷️ Các bàn đang phục vụ (dành cho nhân viên)
+    assignedTables: [{
+        type: mongoose.Schema.ObjectId,
+        ref: "table"
+    }],
+    
+    // 💳 Thông tin thành viên
+    membership: {
+        level: {
+            type: String,
+            enum: ["BRONZE", "SILVER", "GOLD", "PLATINUM"],
+            default: "BRONZE"
+        },
+        points: {
+            type: Number,
+            default: 0,
+            min: 0
+        },
+        pointsHistory: [pointsHistorySchema],
+        lastEarnedPoints: Date,
+        totalSpent: {
+            type: Number,
+            default: 0
+        },
+        favoriteItems: [{
+            type: mongoose.Schema.ObjectId,
+            ref: "product"
+        }],
+        dietaryPreferences: [String],
+        allergies: [String]
+    },
+    
+    // 🔄 Thông tin xác thực
     refresh_token: {
         type: String,
         default: "",
@@ -65,24 +123,34 @@ const userSchema = new mongoose.Schema({
         enum: ["Active", "Inactive", "Suspended"],
         default: "Active",
     },
-    address_details: [
-        {
-            type: mongoose.Schema.ObjectId,
-            ref: 'address'
-        }
-    ],
-    shopping_cart: [
-        {
-            type: mongoose.Schema.ObjectId,
-            ref: 'cartProduct'
-        }
-    ],
+
+    // 🧩 Vai trò và chức vụ
+    role: {
+        type: String,
+        enum: ["ADMIN", "MANAGER", "STAFF", "USER"],
+        default: "USER",
+    },
+    position: {
+        type: String,
+        enum: [null, "WAITER", "CHEF", "CASHIER"],
+        default: null,
+    },
+
+    // 🧾 Liên kết hoạt động
     orderHistory: [
         {
             type: mongoose.Schema.ObjectId,
             ref: 'order'
         }
     ],
+    reservationHistory: [
+        {
+            type: mongoose.Schema.ObjectId,
+            ref: 'reservation'
+        }
+    ],
+
+    // 🔐 Bảo mật
     forgot_password_otp: {
         type: String,
         default: null,
@@ -91,27 +159,21 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: "",
     },
-    role: {
-        type: String,
-        enum: ["ADMIN", "USER"],
-        default: "USER",
-    },
+
+    // 💎 Tích điểm thưởng
     rewardsPoint: {
         type: Number,
         default: 0,
         min: 0,
     },
     pointsHistory: [pointsHistorySchema],
-}, {
-    timestamps: true
-})
 
-// Add a post-save hook to the Order model to update user's rewards points
+}, { timestamps: true });
+
+// ✅ Tự động cập nhật điểm thưởng khi có đơn hàng
 OrderModel.schema.post('save', async function (doc) {
     try {
-        // Only process if the order has earnedPoints and is a new or updated document
         if (doc.earnedPoints && doc.earnedPoints > 0) {
-            // Find the user and update their rewards points
             await mongoose.model('user').findByIdAndUpdate(
                 doc.userId,
                 {
@@ -129,14 +191,12 @@ OrderModel.schema.post('save', async function (doc) {
                 },
                 { new: true, useFindAndModify: false }
             );
-
-            console.log(`Added ${doc.earnedPoints} points to user ${doc.userId} for order ${doc._id}`);
         }
     } catch (error) {
         console.error('Error updating user points from order:', error);
     }
 });
 
-const UserModel = mongoose.model("user", userSchema)
+const UserModel = mongoose.model("user", userSchema);
 
-export default UserModel
+export default UserModel;
