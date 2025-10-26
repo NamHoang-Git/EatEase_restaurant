@@ -264,20 +264,6 @@ const UserMenu = ({ close }) => {
 
                 <Link
                     onClick={handleClose}
-                    to={'/dashboard/address'}
-                    className={`flex items-center text-bl gap-4 px-4 py-3 rounded-xl transition-all duration-300 ease-out cursor-pointer hover:bg-white/15 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] ${
-                        isActive('/dashboard/address')
-                            ? 'bg-white/20 shadow-md'
-                            : ''
-                    }`}
-                >
-                    <span className="text-white font-medium text-sm">
-                        Địa chỉ
-                    </span>
-                </Link>
-
-                <Link
-                    onClick={handleClose}
                     to={'/dashboard/my-orders'}
                     className={`flex items-center text-bl gap-4 px-4 py-3 rounded-xl transition-all duration-300 ease-out cursor-pointer hover:bg-white/15 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] ${
                         isActive('/dashboard/my-orders')

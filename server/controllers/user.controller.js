@@ -12,9 +12,9 @@ import jwt from 'jsonwebtoken'
 // Register Controller
 export async function registerUserController(req, res) {
     try {
-        const { name, email, password } = req.body
+        const { name, email, password, mobile } = req.body
 
-        if (!name || !email || !password) {
+        if (!name || !email || !password || !mobile) {
             return res.status(400).json({
                 message: "Vui lòng nhập các trường bắt buộc",
                 error: true,
@@ -65,7 +65,8 @@ export async function registerUserController(req, res) {
         const payload = {
             name,
             email,
-            password: hashPassword
+            password: hashPassword,
+            mobile
         }
 
         const newUser = new UserModel(payload)

@@ -28,6 +28,7 @@ import CartPage from '../pages/CartPage';
 import BillPage from './../pages/BillPage';
 import ReportPage from './../pages/ReportPage';
 import VoucherPage from '../pages/VoucherPage';
+import AdminDashboard from '@/layouts/AdminDashboard';
 
 const router = createBrowserRouter([
     {
@@ -49,6 +50,34 @@ const router = createBrowserRouter([
                         <Login />
                     </PublicRoute>
                 ),
+            },
+            // Add admin routes with DashboardLayout
+            {
+                path: 'admin',
+                element: (
+                    <ProtectedRoute>
+                        <AdminDashboard />
+                    </ProtectedRoute>
+                ),
+                children: [
+                    {
+                        path: 'dashboard',
+                        element: <Dashboard />
+                    },
+                    {
+                        path: 'products',
+                        element: <ProductAdmin />
+                    },
+                    {
+                        path: 'orders',
+                        element: <MyOrders />
+                    },
+                    {
+                        path: 'profile',
+                        element: <Profile />
+                    },
+                    // Add more admin routes here
+                ]
             },
             {
                 path: 'register',

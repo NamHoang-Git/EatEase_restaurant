@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useState } from 'react';
-import { Eye, EyeOff, ArrowLeft } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import GlareHover from '../GlareHover';
 import { FaFacebookSquare, FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
@@ -112,18 +112,21 @@ export function LoginForm({
 
     return (
         <form
-            className={cn('flex flex-col gap-6 text-white', className)}
+            className={cn(
+                'flex flex-col gap-6 font-bold text-amber-900',
+                className
+            )}
             {...props}
             onSubmit={handleSubmit}
         >
             <div className="flex flex-col items-center gap-2 text-center">
-                <h1 className="text-2xl font-bold">Đăng Nhập Vào Tài Khoản</h1>
+                <h1 className="text-2xl">Đăng Nhập Vào Tài Khoản</h1>
                 <p className="text-balance text-sm text-muted-foreground">
                     Nhập email của bạn bên dưới để đăng nhập vào tài khoản của
                     bạn
                 </p>
             </div>
-            <div className="grid gap-6">
+            <div className="grid gap-6 font-bold">
                 <div className="grid gap-2">
                     <Label htmlFor="email">Email</Label>
                     <Input
@@ -166,7 +169,7 @@ export function LoginForm({
                         </Button>
                     </div>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between font-bold">
                     <div className="flex items-center space-x-2">
                         <input
                             type="checkbox"
@@ -182,14 +185,16 @@ export function LoginForm({
                     </div>
                     <Link
                         to={'/forgot-password'}
-                        className="p-0 h-auto text-sm hover:text-opacity-80 cursor-pointer text-lime-300"
+                        className="p-0 h-auto text-sm hover:text-opacity-80 cursor-pointer text-red-700"
                     >
                         Quên mật khẩu?
                     </Link>
                 </div>
 
                 <GlareHover
-                    glareColor="#ffffff"
+                    glareColor="#b91c1c"
+                    background="#fff"
+                    borderColor="#fff"
                     glareOpacity={0.3}
                     glareAngle={-30}
                     glareSize={300}
@@ -199,8 +204,8 @@ export function LoginForm({
                     <Button
                         disabled={!valideValue}
                         type="submit"
-                        className="w-full h-12 text-sm font-medium text-white hover:opacity-90 rounded-lg shadow-none cursor-pointer"
-                        style={{ backgroundColor: '#000' }}
+                        className="w-full h-12 text-sm font-bold text-red-700 hover:opacity-90 shadow-none cursor-pointer
+                        bg-amber-50 border-amber-50"
                     >
                         {loading ? <Loading /> : 'Đăng nhập'}
                     </Button>
@@ -226,7 +231,7 @@ export function LoginForm({
                     <div className="grid grid-cols-2 gap-4 text-black">
                         <Button
                             variant="outline"
-                            className="flex items-center gap-2 h-12 border-gray-200 hover:bg-gray-400 hover:text-gray-900 rounded-lg
+                            className="flex items-center gap-2 h-12 border-gray-200 hover:bg-amber-100 hover:text-gray-900 rounded-lg
                             bg-white/90 shadow-none cursor-pointer"
                         >
                             <FaGoogle className="mb-1" />
@@ -234,7 +239,7 @@ export function LoginForm({
                         </Button>
                         <Button
                             variant="outline"
-                            className="flex items-center gap-2 h-12 border-gray-200 hover:bg-gray-400 hover:text-gray-900 rounded-lg
+                            className="flex items-center gap-2 h-12 border-gray-200 hover:bg-amber-100 hover:text-gray-900 rounded-lg
                             bg-white/90 shadow-none cursor-pointer"
                         >
                             <FaFacebookSquare className="mb-1" />
@@ -247,7 +252,7 @@ export function LoginForm({
                 Bạn chưa có tài khoản?{' '}
                 <Link
                     to={'/register'}
-                    className="p-0 h-auto text-sm hover:text-opacity-80 font-medium cursor-pointer text-lime-300"
+                    className="p-0 h-auto text-sm hover:text-opacity-80 cursor-pointer text-red-700"
                 >
                     Đăng ký ngay.
                 </Link>

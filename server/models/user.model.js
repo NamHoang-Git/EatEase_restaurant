@@ -61,25 +61,25 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: null,
     },
-    // 🔗 Các đơn hàng của người dùng
+    // Các đơn hàng của người dùng
     orders: [{
         type: mongoose.Schema.ObjectId,
         ref: "order"
     }],
-    
-    // 🏷️ Các đơn đặt bàn
+
+    // Các đơn đặt bàn
     reservations: [{
         type: mongoose.Schema.ObjectId,
         ref: "reservation"
     }],
-    
-    // 🏷️ Các bàn đang phục vụ (dành cho nhân viên)
+
+    // Các bàn đang phục vụ (dành cho nhân viên)
     assignedTables: [{
         type: mongoose.Schema.ObjectId,
         ref: "table"
     }],
-    
-    // 💳 Thông tin thành viên
+
+    // Thông tin thành viên
     membership: {
         level: {
             type: String,
@@ -104,8 +104,8 @@ const userSchema = new mongoose.Schema({
         dietaryPreferences: [String],
         allergies: [String]
     },
-    
-    // 🔄 Thông tin xác thực
+
+    // Thông tin xác thực
     refresh_token: {
         type: String,
         default: "",
@@ -124,7 +124,7 @@ const userSchema = new mongoose.Schema({
         default: "Active",
     },
 
-    // 🧩 Vai trò và chức vụ
+    // Vai trò và chức vụ
     role: {
         type: String,
         enum: ["ADMIN", "MANAGER", "STAFF", "USER"],
@@ -136,7 +136,7 @@ const userSchema = new mongoose.Schema({
         default: null,
     },
 
-    // 🧾 Liên kết hoạt động
+    // Liên kết hoạt động
     orderHistory: [
         {
             type: mongoose.Schema.ObjectId,
@@ -150,7 +150,7 @@ const userSchema = new mongoose.Schema({
         }
     ],
 
-    // 🔐 Bảo mật
+    // Bảo mật
     forgot_password_otp: {
         type: String,
         default: null,
@@ -160,7 +160,7 @@ const userSchema = new mongoose.Schema({
         default: "",
     },
 
-    // 💎 Tích điểm thưởng
+    // Tích điểm thưởng
     rewardsPoint: {
         type: Number,
         default: 0,
@@ -170,7 +170,7 @@ const userSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-// ✅ Tự động cập nhật điểm thưởng khi có đơn hàng
+// Tự động cập nhật điểm thưởng khi có đơn hàng
 OrderModel.schema.post('save', async function (doc) {
     try {
         if (doc.earnedPoints && doc.earnedPoints > 0) {

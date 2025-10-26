@@ -22,6 +22,7 @@ export function ResetPasswordForm({
         email: '',
         newPassword: '',
         confirmNewPassword: '',
+        mobile: '',
     });
 
     const location = useLocation();
@@ -124,6 +125,7 @@ export function ResetPasswordForm({
                     email: '',
                     newPassword: '',
                     confirmNewPassword: '',
+                    mobile: '',
                 });
             }
         } catch (error) {
@@ -135,7 +137,10 @@ export function ResetPasswordForm({
 
     return (
         <form
-            className={cn('flex flex-col gap-6 text-white', className)}
+            className={cn(
+                'flex flex-col gap-6 font-bold text-amber-900',
+                className
+            )}
             {...props}
             onSubmit={handleSubmit}
         >
@@ -211,7 +216,9 @@ export function ResetPasswordForm({
                 </div>
 
                 <GlareHover
-                    glareColor="#ffffff"
+                    glareColor="#b91c1c"
+                    background="#fff"
+                    borderColor="#fff"
                     glareOpacity={0.3}
                     glareAngle={-30}
                     glareSize={300}
@@ -221,8 +228,8 @@ export function ResetPasswordForm({
                     <Button
                         disabled={!valideValue}
                         type="submit"
-                        className="w-full h-12 text-sm font-medium text-white hover:opacity-90 rounded-lg shadow-none cursor-pointer"
-                        style={{ backgroundColor: '#000' }}
+                        className="w-full h-12 text-sm font-bold text-red-700 hover:opacity-90 shadow-none cursor-pointer
+                        bg-amber-50 border-amber-50"
                     >
                         {loading ? <Loading /> : 'Xác nhận'}
                     </Button>
@@ -232,7 +239,7 @@ export function ResetPasswordForm({
                 <IoIosArrowRoundBack size={28} />
                 <Link
                     to={'/login'}
-                    className="p-0 h-auto text-sm hover:text-opacity-80 font-medium cursor-pointer text-lime-300"
+                    className="p-0 h-auto text-sm hover:text-opacity-80 font-medium cursor-pointer text-red-700"
                 >
                     Quay lại đăng nhập.
                 </Link>
