@@ -1,39 +1,32 @@
 "use client";
 import {
-  clamp
-} from "./chunk-TCQMTAGU.js";
-import {
   VISUALLY_HIDDEN_STYLES
-} from "./chunk-PRCJATET.js";
+} from "./chunk-PA2YMSSU.js";
 import {
-  createCollection
-} from "./chunk-73GJIEZE.js";
-import {
+  createCollection,
   useDirection
-} from "./chunk-3HVBBEY2.js";
+} from "./chunk-FE7YTCJU.js";
 import {
   Anchor,
   Arrow,
   Content,
   Root2,
   createPopperScope
-} from "./chunk-BB7WTVJI.js";
+} from "./chunk-YDYS2LUT.js";
 import "./chunk-BIDPXX6L.js";
 import {
   Combination_default,
   FocusScope,
   hideOthers,
   useFocusGuards
-} from "./chunk-POIC6DYP.js";
+} from "./chunk-MGNZAKVP.js";
 import {
   DismissableLayer,
   Portal,
+  composeEventHandlers,
   useControllableState,
   useId
-} from "./chunk-T7OSTFJO.js";
-import {
-  composeEventHandlers
-} from "./chunk-P4S5NJOQ.js";
+} from "./chunk-WZRGH3PC.js";
 import {
   createContextScope,
   useCallbackRef,
@@ -41,14 +34,14 @@ import {
 } from "./chunk-BWWQ2X55.js";
 import {
   Primitive
-} from "./chunk-QXLIJYY3.js";
-import {
-  require_react_dom
-} from "./chunk-NA6NXLYZ.js";
+} from "./chunk-S43MCI4V.js";
 import {
   createSlot,
   useComposedRefs
 } from "./chunk-7ZXAX7L4.js";
+import {
+  require_react_dom
+} from "./chunk-NA6NXLYZ.js";
 import {
   require_jsx_runtime
 } from "./chunk-OAOR5NGZ.js";
@@ -62,6 +55,11 @@ import {
 // node_modules/@radix-ui/react-select/dist/index.mjs
 var React2 = __toESM(require_react(), 1);
 var ReactDOM = __toESM(require_react_dom(), 1);
+
+// node_modules/@radix-ui/number/dist/index.mjs
+function clamp(value, [min, max]) {
+  return Math.min(max, Math.max(min, value));
+}
 
 // node_modules/@radix-ui/react-use-previous/dist/index.mjs
 var React = __toESM(require_react(), 1);

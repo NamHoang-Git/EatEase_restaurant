@@ -239,12 +239,12 @@ var require_redirect_status_code = __commonJS({
         return RedirectStatusCode;
       }
     });
-    var RedirectStatusCode = function(RedirectStatusCode2) {
+    var RedirectStatusCode = (function(RedirectStatusCode2) {
       RedirectStatusCode2[RedirectStatusCode2["SeeOther"] = 303] = "SeeOther";
       RedirectStatusCode2[RedirectStatusCode2["TemporaryRedirect"] = 307] = "TemporaryRedirect";
       RedirectStatusCode2[RedirectStatusCode2["PermanentRedirect"] = 308] = "PermanentRedirect";
       return RedirectStatusCode2;
-    }({});
+    })({});
     if ((typeof exports.default === "function" || typeof exports.default === "object" && exports.default !== null) && typeof exports.default.__esModule === "undefined") {
       Object.defineProperty(exports.default, "__esModule", { value: true });
       Object.assign(exports.default, exports);
@@ -279,11 +279,11 @@ var require_redirect_error = __commonJS({
     });
     var _redirectstatuscode = require_redirect_status_code();
     var REDIRECT_ERROR_CODE = "NEXT_REDIRECT";
-    var RedirectType = function(RedirectType2) {
+    var RedirectType = (function(RedirectType2) {
       RedirectType2["push"] = "push";
       RedirectType2["replace"] = "replace";
       return RedirectType2;
-    }({});
+    })({});
     function isRedirectError(error) {
       if (typeof error !== "object" || error === null || !("digest" in error) || typeof error.digest !== "string") {
         return false;
@@ -1448,12 +1448,12 @@ var require_staged_rendering = __commonJS({
     });
     var _invarianterror = require_invariant_error();
     var _promisewithresolvers = require_promise_with_resolvers();
-    var RenderStage = function(RenderStage2) {
+    var RenderStage = (function(RenderStage2) {
       RenderStage2[RenderStage2["Static"] = 1] = "Static";
       RenderStage2[RenderStage2["Runtime"] = 2] = "Runtime";
       RenderStage2[RenderStage2["Dynamic"] = 3] = "Dynamic";
       return RenderStage2;
-    }({});
+    })({});
     var StagedRenderingController = class {
       constructor(abortSignal = null) {
         this.abortSignal = abortSignal;
@@ -2045,12 +2045,12 @@ ${stack}`;
       error.stack = error.name + ": " + message + (ownerStack ?? componentStack);
       return error;
     }
-    var PreludeState = function(PreludeState2) {
+    var PreludeState = (function(PreludeState2) {
       PreludeState2[PreludeState2["Full"] = 0] = "Full";
       PreludeState2[PreludeState2["Empty"] = 1] = "Empty";
       PreludeState2[PreludeState2["Errored"] = 2] = "Errored";
       return PreludeState2;
-    }({});
+    })({});
     function logDisallowedDynamicError(workStore, error) {
       console.error(error);
       if (!workStore.dev) {

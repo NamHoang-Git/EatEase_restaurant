@@ -15,20 +15,13 @@ const Home = () => {
             <div className="fixed inset-0 z-0 pointer-events-none">
                 <LiquidEther
                     colors={['#FFF7ED', '#FFD6A5', '#FFEAD0']}
-                    mouseForce={20}
-                    cursorSize={100}
                     isViscous={false}
-                    viscous={30}
-                    iterationsViscous={32}
-                    iterationsPoisson={32}
-                    resolution={0.5}
-                    isBounce={false}
+                    iterationsViscous={8}
+                    iterationsPoisson={8}
+                    resolution={0.3}
                     autoDemo={true}
                     autoSpeed={0.5}
-                    autoIntensity={2.2}
-                    takeoverDuration={0.25}
-                    autoResumeDelay={3000}
-                    autoRampDuration={0.6}
+                    autoRampDuration={1.2}
                     style={{ width: '100%', height: '100%' }}
                 />
             </div>

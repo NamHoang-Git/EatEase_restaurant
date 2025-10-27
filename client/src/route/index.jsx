@@ -51,7 +51,6 @@ const router = createBrowserRouter([
                     </PublicRoute>
                 ),
             },
-            // Add admin routes with DashboardLayout
             {
                 path: 'admin',
                 element: (
@@ -61,16 +60,8 @@ const router = createBrowserRouter([
                 ),
                 children: [
                     {
-                        path: 'dashboard',
-                        element: <Dashboard />
-                    },
-                    {
-                        path: 'products',
-                        element: <ProductAdmin />
-                    },
-                    {
-                        path: 'orders',
-                        element: <MyOrders />
+                        path: 'dashboards',
+                        element: <ReportPage />
                     },
                     {
                         path: 'profile',
@@ -131,7 +122,7 @@ const router = createBrowserRouter([
                 path: 'dashboard',
                 element: (
                     <ProtectedRoute>
-                        <Dashboard />
+                        <AdminDashboard />
                     </ProtectedRoute>
                 ),
                 children: [

@@ -18,7 +18,9 @@ function App() {
     const dispatch = useDispatch();
     const location = useLocation();
     const hiddenCartLinkPaths = ['/checkout', '/cart'];
-    const isAdminRoute = location.pathname.startsWith('/admin');
+    const hideLayout = ['/admin', '/dashboard'].some((path) =>
+        location.pathname.startsWith(path)
+    );
 
     useEffect(() => {
         (async () => {
@@ -48,7 +50,7 @@ function App() {
 
     return (
         <GlobalProvider>
-            {!isAdminRoute && (
+            {!hideLayout && (
                 <>
                     <Header />
                     <main className="min-h-[80vh]">
@@ -60,7 +62,7 @@ function App() {
                     )}
                 </>
             )}
-            {isAdminRoute && (
+            {hideLayout && (
                 <main className="min-h-screen">
                     <Outlet />
                 </main>

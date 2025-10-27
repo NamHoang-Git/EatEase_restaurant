@@ -102,7 +102,7 @@ export default function Header() {
 
     return (
         <>
-            <header className="sticky top-0 z-50 p-4 text-amber-50">
+            <header className="sticky top-0 z-50 p-4 text-amber-50 font-semibold">
                 <div className="container mx-auto">
                     <div className="flex h-16 items-center justify-between px-6 liquid-glass-header rounded-full">
                         {/* Brand Logo */}

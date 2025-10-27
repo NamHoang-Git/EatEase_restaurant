@@ -113,7 +113,7 @@ function parseThreshold(scrollThreshold) {
 }
 var InfiniteScroll = (
   /** @class */
-  function(_super) {
+  (function(_super) {
     __extends(InfiniteScroll2, _super);
     function InfiniteScroll2(props) {
       var _this = _super.call(this, props) || this;
@@ -328,7 +328,7 @@ var InfiniteScroll = (
       );
     };
     return InfiniteScroll2;
-  }(import_react.Component)
+  })(import_react.Component)
 );
 var index_es_default = InfiniteScroll;
 export {

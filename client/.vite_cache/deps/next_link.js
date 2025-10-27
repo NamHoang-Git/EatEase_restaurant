@@ -1179,11 +1179,11 @@ var require_path_to_regexp = __commonJS({
           var t = n2.encode, a = t === void 0 ? function(e3) {
             return e3;
           } : t, i = n2.validate, o = i === void 0 ? true : i;
-          var c = e2.map(function(e3) {
+          var c = e2.map((function(e3) {
             if (typeof e3 === "object") {
               return new RegExp("^(?:".concat(e3.pattern, ")$"), r);
             }
-          });
+          }));
           return function(n3) {
             var r2 = "";
             for (var t2 = 0; t2 < e2.length; t2++) {
@@ -1250,9 +1250,9 @@ var require_path_to_regexp = __commonJS({
               if (t2[e3] === void 0) return "continue";
               var r3 = n2[e3 - 1];
               if (r3.modifier === "*" || r3.modifier === "+") {
-                c[r3.name] = t2[e3].split(r3.prefix + r3.suffix).map(function(e4) {
+                c[r3.name] = t2[e3].split(r3.prefix + r3.suffix).map((function(e4) {
                   return a(e4, r3);
-                });
+                }));
               } else {
                 c[r3.name] = a(t2[e3], r3);
               }
@@ -1282,9 +1282,9 @@ var require_path_to_regexp = __commonJS({
           return e2;
         }
         function arrayToRegexp(e2, n2, r) {
-          var t = e2.map(function(e3) {
+          var t = e2.map((function(e3) {
             return pathToRegexp(e3, n2, r).source;
-          });
+          }));
           return new RegExp("(?:".concat(t.join("|"), ")"), flags(r));
         }
         function stringToRegexp(e2, n2, r) {

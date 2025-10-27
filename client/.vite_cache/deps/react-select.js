@@ -357,7 +357,7 @@ function createStyleElement(options2) {
   tag.setAttribute("data-s", "");
   return tag;
 }
-var StyleSheet = function() {
+var StyleSheet = (function() {
   function StyleSheet2(options2) {
     var _this = this;
     this._insertTag = function(tag) {
@@ -428,7 +428,7 @@ var StyleSheet = function() {
     }
   };
   return StyleSheet2;
-}();
+})();
 
 // node_modules/stylis/src/Enum.js
 var MS = "-ms-";
@@ -4427,7 +4427,7 @@ var shouldHideSelectedOptions = function shouldHideSelectedOptions2(props) {
   return hideSelectedOptions;
 };
 var instanceId = 1;
-var Select = function(_Component) {
+var Select = (function(_Component) {
   _inherits(Select2, _Component);
   var _super = _createSuper(Select2);
   function Select2(_props) {
@@ -5713,7 +5713,7 @@ var Select = function(_Component) {
     }
   }]);
   return Select2;
-}(import_react6.Component);
+})(import_react6.Component);
 Select.defaultProps = defaultProps;
 
 // node_modules/react-select/dist/react-select.esm.js
@@ -5725,7 +5725,7 @@ var StateManagedSelect = (0, import_react8.forwardRef)(function(props, ref) {
   }, baseSelectProps));
 });
 var StateManagedSelect$1 = StateManagedSelect;
-var NonceProvider = function(_ref3) {
+var NonceProvider = (function(_ref3) {
   var nonce = _ref3.nonce, children = _ref3.children, cacheKey = _ref3.cacheKey;
   var emotionCache = (0, import_react8.useMemo)(function() {
     return createCache({
@@ -5736,7 +5736,7 @@ var NonceProvider = function(_ref3) {
   return React5.createElement(CacheProvider, {
     value: emotionCache
   }, children);
-};
+});
 export {
   NonceProvider,
   components,

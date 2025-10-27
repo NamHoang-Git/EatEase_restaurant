@@ -1,4 +1,4 @@
-// import "@/globals.css"
+import "@/index.css"
 import { Sidebar } from "@/components/sidebar"
 import { TopNav } from "@/components/top-nav"
 import { TooltipProvider } from "@/components/ui/tooltip"

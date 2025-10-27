@@ -16,13 +16,13 @@ import {
   Settings,
   HelpCircle,
   Menu,
-  ChevronLeft,
+  PanelLeftClose,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "@/components/ui/tooltip"
-import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { Link } from 'react-router-dom';
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: Home },
@@ -35,7 +35,7 @@ const navigation = [
   { name: "Members", href: "/members", icon: Users2 },
   { name: "Permissions", href: "/permissions", icon: Shield },
   { name: "Chat", href: "/chat", icon: MessagesSquare },
-  { name: "Meetings", href: "/meetings", icon: Video },
+  { name: "Profile", href: "/dashboard/profile", icon: Video },
 ]
 
 const bottomNavigation = [
@@ -52,7 +52,7 @@ export function Sidebar() {
     <Tooltip delayDuration={0}>
       <TooltipTrigger asChild>
         <Link
-          href={item.href}
+          to={item.href}
           className={cn(
             "flex items-center rounded-md px-3 py-2 text-sm font-medium transition-colors",
             pathname === item.href
@@ -93,8 +93,8 @@ export function Sidebar() {
           <div className="border-b border-border">
             <div className={cn("flex h-16 items-center gap-2 px-4", isCollapsed && "justify-center px-2")}>
               {!isCollapsed && (
-                <Link href="/" className="flex items-center font-semibold">
-                  <span className="text-lg">Flowers&Saints</span>
+                <Link to="/" className="flex items-center font-semibold">
+                  <span className="text-lg">EatEase</span>
                 </Link>
               )}
               <Button
@@ -103,7 +103,7 @@ export function Sidebar() {
                 className={cn("ml-auto h-8 w-8", isCollapsed && "ml-0")}
                 onClick={() => setIsCollapsed(!isCollapsed)}
               >
-                <ChevronLeft className={cn("h-4 w-4 transition-transform", isCollapsed && "rotate-180")} />
+                <PanelLeftClose className={cn("h-5 w-5 transition-transform", isCollapsed && "rotate-180")} />
                 <span className="sr-only">{isCollapsed ? "Expand" : "Collapse"} Sidebar</span>
               </Button>
             </div>
